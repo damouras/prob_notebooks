@@ -1,0 +1,11 @@
+notebooks:
+    1. Prob model
+    2. Counting - graphs
+    3. Conditioning - Coding theory
+    4. RV/Distr - Random Number generators, histograms
+    5. Joint/conditional distr: Naive Bayes classifier
+    6. Expectation: Simulation
+    7. cont RV: CDF transform
+    8. Queing theory
+    
+

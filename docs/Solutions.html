@@ -1,0 +1,686 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Problem Solutions &#8212; Probability Notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Solutions';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Discrete Random Variables" href="4.%20Discrete%20Random%20Variables.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Two_red_dice_01.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/Two_red_dice_01.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Probability Notebooks
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.%20Probability%20Models.html">Probability Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20Counting.html">Counting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20Conditional%20Probability.html">Conditional Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.%20Discrete%20Random%20Variables.html">Discrete Random Variables</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Problem Solutions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/damouras/probability_notebooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/damouras/probability_notebooks/issues/new?title=Issue%20on%20page%20%2FSolutions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Solutions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Problem Solutions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="problem-solutions">
+<h1>Problem Solutions<a class="headerlink" href="#problem-solutions" title="Permalink to this headline">#</a></h1>
+<section id="id1">
+<h2>1<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>Assume you flip a fair coin 7 times and are looking for one of two patterns:  𝐻𝑇  or  𝐻𝐻 . Find the probability of each pattern showing up, and check which one, if any, is more likely.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">S</span><span class="o">=</span><span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">128</span><span class="p">):</span>
+    <span class="n">S</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">binary_repr</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">7</span><span class="p">)</span> <span class="p">)</span>
+    
+<span class="kn">import</span> <span class="nn">re</span> 
+<span class="n">A_HT</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> 
+<span class="k">for</span> <span class="n">outcome</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="n">outcome</span><span class="p">):</span>
+        <span class="n">A_HT</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">outcome</span><span class="p">)</span>
+        
+<span class="n">A_HH</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">outcome</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;11&#39;</span><span class="p">,</span> <span class="n">outcome</span><span class="p">):</span>
+        <span class="n">A_HH</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">outcome</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">DU_prob</span><span class="p">(</span> <span class="n">event</span><span class="p">,</span> <span class="n">sample_space</span> <span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample_space</span><span class="p">)</span> <span class="p">)</span>
+    
+<span class="n">DU_prob</span><span class="p">(</span><span class="n">A_HT</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>  <span class="c1"># Probability of HT</span>
+<span class="n">DU_prob</span><span class="p">(</span><span class="n">A_HH</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>  <span class="c1"># Probability of HH</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9375
+0.734375
+</pre></div>
+</div>
+</div>
+</div>
+<p>You might think that since the coin is fair, the specific pattern does not matter, only the length.
+But as you can see it <em>does</em>; see <a class="reference external" href="https://stats.stackexchange.com/questions/305699/occurrence-of-at-least-1-ht-and-hh-in-sequences-of-4-coin-flips-not-equally-like">this post</a> for an intuitive explanation.</p>
+</section>
+<section id="id2">
+<h2>2<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>Find the number of labeled, directed graphs of node size <span class="math notranslate nohighlight">\(n\)</span> <em>including</em> possible loops.</p></li>
+</ol>
+<p>There are <span class="math notranslate nohighlight">\( _{n} P_{2} = n(n-1)\)</span> ordered pairs of different nodes and <span class="math notranslate nohighlight">\(n\)</span> possible loops, which means <span class="math notranslate nohighlight">\(n^2-n+n=n^2\)</span> possible directed edges, hence there are <span class="math notranslate nohighlight">\(2^{n^2}\)</span> possible graphs.</p>
+<ol class="arabic simple" start="2">
+<li><p>Find the number of simple <a class="reference external" href="https://en.wikipedia.org/wiki/Complete_graph">complete graphs</a>, either labeled or unlabeled.</p></li>
+</ol>
+<p>A complete graph is one where <em>every</em> node is connected to every other node. Hence, there is only one such labeled graph with all <span class="math notranslate nohighlight">\({n \choose 2}\)</span> possible edges present. Removing the labels does not change that (any permutation of the labels in a complete labeled graph is isomorphic).</p>
+<ol class="arabic simple" start="3">
+<li><p>A directed, complete graph is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Tournament_(graph_theory)">tournament</a>. Find the number of tournaments of node size <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+</ol>
+<p>A complete digraph has <span class="math notranslate nohighlight">\({n \choose 2}\)</span> edges, and for each edge there are <span class="math notranslate nohighlight">\(2\)</span> options, hence there are <span class="math notranslate nohighlight">\(2^{ {n \choose 2} }\)</span> possible labeled tournaments.</p>
+<ol class="arabic simple" start="4">
+<li><p>In a labeled <em>complete</em> graph of size <span class="math notranslate nohighlight">\(n\)</span>, show that the number of paths of length <span class="math notranslate nohighlight">\(k, 0 \le k \le n-2 \)</span> between two nodes is <span class="math notranslate nohighlight">\( \frac{ (n-2)! }{(n-2-k)! }\)</span>.</p></li>
+</ol>
+<p>If we fix two nodes, we can use the remaining <span class="math notranslate nohighlight">\(n-2\)</span> to form a path of length <span class="math notranslate nohighlight">\(0\le k \le n-2\)</span>. Since the graph is complete, there are no restrictions on connectivity; the only thing that characterizes the path is the order in which the in-between nodes (if any) are visited. Hence, for fixed path length <span class="math notranslate nohighlight">\(k\)</span>, there are <span class="math notranslate nohighlight">\({n-2 \choose k}\)</span> ways to select the in-between nodes, times <span class="math notranslate nohighlight">\(k!\)</span> ways to order them, which lead to a total of
+$<span class="math notranslate nohighlight">\( {n-2 \choose k} \times k! = \frac{ (n-2)! }{(n-2-k)! \times k! } \times k! =   \frac{ (n-2)! }{(n-2-k)! }\)</span>$</p>
+<ol class="arabic simple" start="5">
+<li><p>Use 4. to show that the <em>total</em> number of paths between two nodes in a labeled complete graph of size <span class="math notranslate nohighlight">\(n\)</span> is
+$<span class="math notranslate nohighlight">\(  \lfloor e \cdot (n−2)!  \rfloor\)</span>$</p></li>
+</ol>
+<p>We sum up the number of paths of different lengths:
+$<span class="math notranslate nohighlight">\( \sum_{k=0}^{n-2}  \frac{ (n-2)! }{(n-2-k)! } = (n-2)! \times \sum_{k=0}^{n-2} \frac{1}{k!} \)</span><span class="math notranslate nohighlight">\(
+Note that \)</span>\sum_{k=0}^{\infty } \frac{1}{k!} = e<span class="math notranslate nohighlight">\(, so
+\)</span><span class="math notranslate nohighlight">\( = (n-2)! \times (e - \overbrace{ \sum_{k=n-2+1}^{\infty} }^{ \text{remainder} } )\)</span><span class="math notranslate nohighlight">\( 
+where the subtracted remainder will always be \)</span>&lt;1<span class="math notranslate nohighlight">\( (see [here](https://math.stackexchange.com/questions/2406920/total-number-paths-between-two-nodes-in-a-complete-graph)), therefore we can use the floor function:
+\)</span><span class="math notranslate nohighlight">\(= \lfloor e \cdot (n−2)!  \rfloor\)</span>$</p>
+</section>
+<section id="id3">
+<h2>3<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>Assume the binary symmetric channel (<span class="math notranslate nohighlight">\(p=.05\%\)</span>) with binary representation for the 10 digits. To minimize errors, you decide to transmit every bit in the binary representation <em>3 times</em>, and take the majority bit as received; this is an example of a <a class="reference external" href="https://en.wikipedia.org/wiki/Repetition_code">repetition code</a>. E.g., <span class="math notranslate nohighlight">\(2\)</span> would be mapped to <span class="math notranslate nohighlight">\((0010)\)</span>, which would be transmitted as <span class="math notranslate nohighlight">\(((000)(000)(111)(000))\)</span>. At the other end, if Bob received <span class="math notranslate nohighlight">\(( (010) (\cdots)(\cdots)(\cdots) )\)</span>, he would automatically correct <span class="math notranslate nohighlight">\((010)\)</span> to <span class="math notranslate nohighlight">\(0\)</span>, since 2/3 bits are <span class="math notranslate nohighlight">\(0\)</span>, etc. Find the probability of correct transmission for this scheme; this is a simple enough analytical caclulation that does not require Python. <br>
+(Note: This is an extension of Execise 2.12.(b) from <a class="reference external" href="https://drive.google.com/file/d/1VmkAAGOYCTORq1wxSQqy255qLJjTNvBI/view">B&amp;W</a>. )</p></li>
+</ol>
+<p>From the original problem, we know that the probability of correct transmission is <span class="math notranslate nohighlight">\((1-p)^4 = (0.95)^4= 0.81450625\)</span>.
+In this version, the probability of correct transmission for each individual digit is higher because we can absorb one error. A single transmission is correct if we have 0 or 1 errors, i.e. with probability <span class="math notranslate nohighlight">\((1-p)^3 + 3 (1-p)^2 p = (0.95)^2 (0.95 + 0.15)=0.99275\)</span> (not that one error can occur in any of the 3 repeated digits, hence the mutliplication by <span class="math notranslate nohighlight">\(3\)</span>).
+The overal probability of correct transmission for the entire code is <span class="math notranslate nohighlight">\( [ (1-p)^3 + 3 (1-p)^2 p ]^4 = (0.99275)^4 = 0.97131385345\)</span>. So, by using triple redundancy, we achieve an accuracy increase from 81.5% to 97.1%.</p>
+<ol class="arabic simple" start="2">
+<li><p>Consider the <a class="reference external" href="https://en.wikipedia.org/wiki/Two-out-of-five_code">two-out-of-five code</a>, where each digit is mapped to a 5-bit string with two <span class="math notranslate nohighlight">\(1\)</span>’s and three <span class="math notranslate nohighlight">\(0\)</span>’s, as follows:
+| Digit | Binary Code |
+|:—–:|:——:|
+|   1   | 00011  |
+|   2   | 00101  |
+|   3   | 00110  |
+|   4   | 01001  |
+|   5   | 01010  |
+|   6   | 01100  |
+|   7   | 10001  |
+|   8   | 10010  |
+|   9   | 10100  |
+|   0   | 11000  |</p></li>
+</ol>
+<p>There are exactly <span class="math notranslate nohighlight">\( { 5 \choose 2 }= 10\)</span> such codes, all either 2 or 4 bits apart in Hamming distance. Using a binary symmetric channel with <span class="math notranslate nohighlight">\(p=5\%\)</span>, calculate the probability of correct transmission, detected error, and undetected error. <br>
+(Note there is no error correction in this scheme, any received code without two <span class="math notranslate nohighlight">\(1\)</span>’s is mapped to <span class="math notranslate nohighlight">\(err\)</span>).</p>
+<p>Below we recreate the joint probabilities matrix <em>only</em> for the 2-out-of-5 codes, which give us the probability of correct transmission and silent error; we can get the probability of detected errors using the complement rule.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list of 2-out-of-5 codes</span>
+<span class="n">codes</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;00011&#39;</span><span class="p">,</span> <span class="s1">&#39;00101&#39;</span><span class="p">,</span> <span class="s1">&#39;00110&#39;</span><span class="p">,</span> <span class="s1">&#39;01001&#39;</span><span class="p">,</span> <span class="s1">&#39;01010&#39;</span><span class="p">,</span> <span class="s1">&#39;01100&#39;</span><span class="p">,</span> <span class="s1">&#39;10001&#39;</span><span class="p">,</span> <span class="s1">&#39;10010&#39;</span><span class="p">,</span> <span class="s1">&#39;10100&#39;</span><span class="p">,</span> <span class="s1">&#39;11000&#39;</span><span class="p">]</span>
+    
+<span class="k">def</span> <span class="nf">hamming</span><span class="p">(</span><span class="n">string1</span><span class="p">,</span> <span class="n">string2</span><span class="p">):</span> 
+    <span class="n">dist_counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string1</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">string1</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">!=</span> <span class="n">string2</span><span class="p">[</span><span class="n">n</span><span class="p">]:</span>
+            <span class="n">dist_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">dist_counter</span>
+
+<span class="n">dist_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span> <span class="p">[</span> <span class="nb">len</span><span class="p">(</span><span class="n">codes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">codes</span><span class="p">)</span> <span class="p">]</span> <span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">codes</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">codes</span><span class="p">)):</span>
+        <span class="n">dist_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">hamming</span><span class="p">(</span> <span class="n">codes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">codes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="mf">.05</span> <span class="c1"># transmission error probability</span>
+<span class="n">P_MR</span> <span class="o">=</span> <span class="p">(</span> <span class="n">p</span> <span class="o">**</span> <span class="n">dist_mat</span> <span class="p">)</span> <span class="o">*</span> <span class="p">(</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span> <span class="mi">5</span> <span class="o">-</span> <span class="n">dist_mat</span> <span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+
+<span class="c1"># Probability of correct transmission</span>
+<span class="nb">print</span><span class="p">(</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">P_MR</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+<span class="c1"># Probability of silect error</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">P_MR</span><span class="p">)</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">P_MR</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+<span class="c1"># Probability of detected error</span>
+<span class="nb">print</span><span class="p">(</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">P_MR</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7737809374999997
+0.01287843749999984
+0.2133406250000005
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the probability of correct transmission is smaller for 2-out-of-5 (77.38%) than for simple binary representation (81.45%); that’s because we use 5 instead of 4 bits, increasing the chances that at least some of them are corrupted. But notice that the probability of silent errors is now much smaller (1.29% vs 13.7%), which means probability of detecting errors is much higher (21.33% vs 4.85%). That’s because the 2-out-of-5 codes are farther appart, thanks to the extra bit.</p>
+</section>
+<section id="id4">
+<h2>4<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>Show (analytically) that if you take the PMF of a discrete uniform RV <span class="math notranslate nohighlight">\(X\)</span> in <span class="math notranslate nohighlight">\([0,m)\)</span> and condition on it being <em>less than</em> <span class="math notranslate nohighlight">\(k\)</span>, with <span class="math notranslate nohighlight">\(k&lt;m\)</span>, then the resulting conditional distribution will be uniform in <span class="math notranslate nohighlight">\([0,k)\)</span>.</p></li>
+</ol>
+<p>Let the RV <span class="math notranslate nohighlight">\(X\)</span> follow Discrete Uniform in <span class="math notranslate nohighlight">\([0,m)\)</span>, i.e. has PMF
+$<span class="math notranslate nohighlight">\( P( X=x ) = \begin{cases} 1/m, &amp; x = 1, 2, \ldots, m-1 \\ 0, &amp; \text{o/w} \end{cases}\)</span><span class="math notranslate nohighlight">\(
+Its conditional probability given \)</span>X&lt;k<span class="math notranslate nohighlight">\( is given by 
+\)</span><span class="math notranslate nohighlight">\( P( X=x | X&lt;k ) = \frac{ P( \{X=x\} \cap \{X&lt;k\} ) }{ P( X&lt;k ) } = \begin{cases} \frac{ 1/m }{ k/m } =1/k, &amp; x = 1, 2, \ldots, k-1 \\
+\frac{ 0 }{ k/m } =0, &amp; \text{o/w} \end{cases}\)</span><span class="math notranslate nohighlight">\(
+which is the Discrete Uniform on \)</span>[0,k)$.</p>
+<ol class="arabic simple" start="2">
+<li><p>Use a simulation experiment to verify that the <em>sum</em> of two discrete uniform RVs in <span class="math notranslate nohighlight">\([0,10]\)</span> is <em>not</em> uniformly distributed in <span class="math notranslate nohighlight">\([0,20]\)</span>, by generating <span class="math notranslate nohighlight">\(1000\)</span> variates of the sum and plotting their relative frequency.</p></li>
+</ol>
+<p>The following histogram shows that the sum of uniforms is not uniform (relative frequency barplot is not flat).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">rnd</span>
+<span class="n">rnd</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123456789</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="n">rnd</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># convert list to numpy array, </span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="n">rnd</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># to achieve element-wise addition</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>  <span class="c1"># Count variate frequencies </span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span> <span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="nb">list</span><span class="p">(</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># Barplot of relative frequencies </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5ead5c06960b7865f642c0b827ad66b42e19e8ca8b37bea9de94104d14b0cac6.png" src="_images/5ead5c06960b7865f642c0b827ad66b42e19e8ca8b37bea9de94104d14b0cac6.png" />
+</div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Use a simulation experiment to verify the <a class="reference external" href="https://en.wikipedia.org/wiki/Memorylessness">memoryless property</a> of the Geometric distribution. More specifically, generate 2000 random variates from the Geometric(<span class="math notranslate nohighlight">\(1/2\)</span>) distribution using <code class="docutils literal notranslate"><span class="pre">scipy.stats.geom.rvs</span></code>, and keep the values that are greater or equal to <span class="math notranslate nohighlight">\(3\)</span>, effectively conditioning on <span class="math notranslate nohighlight">\(X\ge 3\)</span>. Create a relative frequency plot of the <em>excess</em> values, i.e. the original values minus 2, and compare them to the theoretical Geometric(<span class="math notranslate nohighlight">\(1/2\)</span>) PMF.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">geom</span> 
+<span class="n">x</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">2000</span> <span class="p">)</span>
+
+<span class="n">x_xs</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">2</span> <span class="p">]</span> <span class="o">-</span> <span class="mi">2</span>      <span class="c1"># calculate conditional excess values </span>
+
+<span class="n">counts</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">x_xs</span><span class="p">)</span> 
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span> <span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="nb">list</span><span class="p">(</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_xs</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># Barplot of relative frequencies </span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">x_xs</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="p">),</span> <span class="n">geom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">x_xs</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">linefmt</span> <span class="o">=</span> <span class="s1">&#39;C3-&#39;</span><span class="p">,</span> <span class="n">markerfmt</span> <span class="o">=</span> <span class="s1">&#39;C3o&#39;</span> <span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Variate Rel. Freq.&#39;</span><span class="p">,</span> <span class="s1">&#39;Theoretical PMF&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/de429c5ec54ad8d6f549c27754e5da0dfb46f93ca71e80f57ac6cc6ed9f2807d.png" src="_images/de429c5ec54ad8d6f549c27754e5da0dfb46f93ca71e80f57ac6cc6ed9f2807d.png" />
+</div>
+</div>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="4.%20Discrete%20Random%20Variables.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Discrete Random Variables</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sotirios Damouras
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

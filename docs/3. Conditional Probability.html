@@ -1,0 +1,768 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Conditional Probability &#8212; Probability Notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3. Conditional Probability';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Discrete Random Variables" href="4.%20Discrete%20Random%20Variables.html" />
+    <link rel="prev" title="Counting" href="2.%20Counting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Two_red_dice_01.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/Two_red_dice_01.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Probability Notebooks
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.%20Probability%20Models.html">Probability Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20Counting.html">Counting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Conditional Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.%20Discrete%20Random%20Variables.html">Discrete Random Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Solutions.html">Problem Solutions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/damouras/probability_notebooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/damouras/probability_notebooks/issues/new?title=Issue%20on%20page%20%2F3. Conditional Probability.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/3. Conditional Probability.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Conditional Probability</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-symmetric-channel">Binary Symmetric Channel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-representation-code">Binary Representation Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-probabilities">Conditional Probabilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-performance">Code Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modified-code">Modified Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-correction">Error Correction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redundancy">Redundancy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="conditional-probability">
+<h1>Conditional Probability<a class="headerlink" href="#conditional-probability" title="Permalink to this headline">#</a></h1>
+<p>Conditioning updates probabilities by incorporating (partial) information in the form of conditioning events. The conditioning operation is crucial for virtually every application of probability theory, but this notebook will focus on <a class="reference external" href="https://en.wikipedia.org/wiki/Information_theory">Information Theory</a> and, more specifically, <a class="reference external" href="https://en.wikipedia.org/wiki/Error_detection_and_correction">Channel Coding (a.k.a. Error Detection and Correction)</a>. This is the study of <em>codes</em> for communicating over noisy channels, and has applications anywhere from WiFi to computer memory devices. Interestingly, the performance, and hence design, of such codes relies crucialy on probability theory.</p>
+<section id="binary-symmetric-channel">
+<h2>Binary Symmetric Channel<a class="headerlink" href="#binary-symmetric-channel" title="Permalink to this headline">#</a></h2>
+<p>Assume the basic channel coding setup: Alice wants to transmit a “message” to Bob over over a <em>binary</em> channel (e.g. wire with on=1/off=0 states). The message could be anything (e.g. a number, word, or image), but it has to be <em>encoded</em> into a binary string for sending over the channel. Similarly, Bob has to <em>decode</em> the binary string he receives to convert it back to the original message. The convention for encodind and decoding is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Code">code</a>.</p>
+<p><a title="Benjamin D. Esham, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Binary_symmetric_channel_(en).svg"><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Binary_symmetric_channel_%28en%29.svg/512px-Binary_symmetric_channel_%28en%29.svg.png"><img alt="Binary symmetric channel (en)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Binary_symmetric_channel_%28en%29.svg/512px-Binary_symmetric_channel_%28en%29.svg.png" style="width: 512px;" /></a></a></p>
+<p>If the communication channel was perfect, the choice of code would be straightforward: we would use the most succinct (i.e. shortest) mapping of messages to binary strings. But the channel is “noisy” and can randomly change states with equal probability <span class="math notranslate nohighlight">\(p\)</span> of switching from 0 to 1, and vice-versa; this classical setup is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Binary_symmetric_channel">binary symmetric channel</a>.</p>
+</section>
+<section id="binary-representation-code">
+<h2>Binary Representation Code<a class="headerlink" href="#binary-representation-code" title="Permalink to this headline">#</a></h2>
+<p>To fix ideas, assume the message is a digit in 0-9, and that all digits are equally likely. In other words, without receiving <em>any</em> message (no information) Bob would expect a digit in 0-9 with equal probability. Each message is then <em>encoded</em> into a binary sequence of 0’s and 1’ according to <em>some</em> encoding function <span class="math notranslate nohighlight">\(E()\)</span>. The coded message is then transmitted over the channel, and Bob receives a (possibly corrupted) signal, which is then <em>decoded</em> into a message or an error (<span class="math notranslate nohighlight">\(err\)</span>), according to the decoding function <span class="math notranslate nohighlight">\(D()\)</span>. There are different ways to treat errors, depending on whether the channel allows for two-way communication (e.g. Bob can request a repeat if he gets an error), but to keep things simple we assume only one-way communication.</p>
+<p>To fix ideas, let our coding scheme map the 10 messages/digits, denoted <span class="math notranslate nohighlight">\(M_i,\; i=0,\ldots,9\)</span>  onto their classical binary representation, i.e. <span class="math notranslate nohighlight">\(E(0)=(0000)\)</span>, <span class="math notranslate nohighlight">\(E(1)=(0001)\)</span>, up to <span class="math notranslate nohighlight">\(E(9)=(1001)\)</span>. We use strings of length 4 because we need at least <span class="math notranslate nohighlight">\(\log_2(10) = 3.3219\)</span> bits to represent 10 numbers. This leaves us with <span class="math notranslate nohighlight">\(2^4-10=6\)</span> unused strings, which the decoder maps to an error; the entire coding scheme is represented below:
+<img alt="Naive Code" src="_images/naive_code.svg" /></p>
+<section id="conditional-probabilities">
+<h3>Conditional Probabilities<a class="headerlink" href="#conditional-probabilities" title="Permalink to this headline">#</a></h3>
+<p>Note that there are two sources of randomnes, represented in red:</p>
+<ol class="arabic simple">
+<li><p>the choice of message (from the perspective of Bob, who doesn’t know Alice’s intentions), and</p></li>
+<li><p>the noisy transmission.</p></li>
+</ol>
+<p>The encoding and decoding are deterministic 1-to-1 functions (black arrows). Without information (i.e. received code), Bob knows that every message (digit) is equally likely to be chosen by Alice. Let’s represent this by assigning events <span class="math notranslate nohighlight">\(M_0,\ldots,M_9\)</span> for each digit, where <span class="math notranslate nohighlight">\(P(M_i)=.1, \;  i=0,\ldots,9\)</span>.</p>
+<p>When Bob obtains information in the form of the received code <span class="math notranslate nohighlight">\(R_j\)</span>, he updates the message probabilities accordingly. He is now interested in <span class="math notranslate nohighlight">\(P(M_i|R_j)\)</span>, but this probability is not directly available.</p>
+<p>Nevertheless, we know <span class="math notranslate nohighlight">\(P(R_j|M_i)\)</span> from the binary symmetric channel assumption, since the probability of any error (flipped bit) is <span class="math notranslate nohighlight">\(p\)</span>, independently of other errors. For example, for message <span class="math notranslate nohighlight">\(M_1=\{1\}\)</span> with <span class="math notranslate nohighlight">\(E(M_1)=(0001)\)</span> the probability of receiving code <span class="math notranslate nohighlight">\((0100)\)</span> (<span class="math notranslate nohighlight">\(R_4\)</span>) is <span class="math notranslate nohighlight">\(p^2 \times (1-p)^{4-2}\)</span>, because the codes differ by 2 bits, so there were 2 errors and 4-2=2 correct bits (their location is irrelevant). More generally, we have:</p>
+<div class="math notranslate nohighlight">
+\[ P(R_j | M_i ) = p^{ d_{ham} ( E(M_i), R_j )  } \times (1-p)^{ 4 - d_{ham} ( E(M_i), R_j ) } \]</div>
+<p>where <span class="math notranslate nohighlight">\(d_{ham}(\cdot, \cdot)\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Hamming_distance">Hamming distance</a>, i.e. the number of differring characters in two strings of the same length. Assuming the transmission error probability is <span class="math notranslate nohighlight">\(p=5\%\)</span>, we can calculate <em>all</em> conditional probabilities of the form <span class="math notranslate nohighlight">\(P( R_j | M_i ),\; j=0,\ldots,9, \; i = 0,\ldots, 15\)</span> in the <span class="math notranslate nohighlight">\(10 \times 16\)</span> matrix <code class="docutils literal notranslate"><span class="pre">P_RgM</span></code>, where the row index represents the message, and the column index the received code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># List of all possible codes</span>
+<span class="n">codes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">codes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">binary_repr</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="p">)</span>  
+    
+<span class="c1"># Hamming distance function (from https://en.wikipedia.org/wiki/Hamming_distance)    </span>
+<span class="k">def</span> <span class="nf">hamming</span><span class="p">(</span><span class="n">string1</span><span class="p">,</span> <span class="n">string2</span><span class="p">):</span> 
+    <span class="n">dist_counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string1</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">string1</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">!=</span> <span class="n">string2</span><span class="p">[</span><span class="n">n</span><span class="p">]:</span>
+            <span class="n">dist_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">dist_counter</span>
+
+<span class="c1"># Distance matrix of all codes</span>
+<span class="n">dist_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span> <span class="p">[</span> <span class="nb">len</span><span class="p">(</span><span class="n">codes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">codes</span><span class="p">)</span> <span class="p">]</span> <span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">codes</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">codes</span><span class="p">)):</span>
+        <span class="n">dist_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">hamming</span><span class="p">(</span> <span class="n">codes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">codes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="mf">.05</span> <span class="c1"># transmission error probability</span>
+        
+<span class="c1"># We use only the relevant rows (first 10) of the distance matrix </span>
+<span class="c1"># to caclulate the conditional probabilites </span>
+<span class="n">P_RgM</span> <span class="o">=</span> <span class="p">(</span> <span class="n">p</span> <span class="o">**</span> <span class="n">dist_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,:]</span> <span class="p">)</span> <span class="o">*</span> <span class="p">(</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span> <span class="mi">4</span> <span class="o">-</span> <span class="n">dist_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,:]</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The rows of <code class="docutils literal notranslate"><span class="pre">P_RgM</span></code> sum to 1, since each row represents a conditional probability measure, conditional on the (encoded) message.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">P_RgM</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">)</span> <span class="c1"># take row sums of matrix P_RgM</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now answer questions such as: <em>If Bob received <span class="math notranslate nohighlight">\(R_4=(0100)\rightarrow D(R_4)=4\)</span>, what is the probability that Alice actually sent <span class="math notranslate nohighlight">\(M_4 = \{4\}\)</span> ?</em>, (This is an extension of Execise 2.12.(a) from <a class="reference external" href="https://drive.google.com/file/d/1VmkAAGOYCTORq1wxSQqy255qLJjTNvBI/view">B&amp;W</a>).
+<img alt="Bayes for coding" src="_images/binary_repr_code_bayes.svg" />
+We are looking for <span class="math notranslate nohighlight">\(P(M_4|R_4)\)</span> but we know <span class="math notranslate nohighlight">\(P(R_4|M_i)\)</span> and <span class="math notranslate nohighlight">\(P(M_i)\)</span> for all <span class="math notranslate nohighlight">\(i=0,\ldots,9\)</span>, which is exactly the setup for <em>Bayes rule</em>:</p>
+<div class="math notranslate nohighlight">
+\[ P(M_i|R_j) = \frac{ P(R_j|M_i) P(M_i) }{ P( R_j) } = \frac{ P(M_i \cap R_j) }{ \sum_{i}  P( M_i \cap R_j) } \]</div>
+<p>The main ingredient in both numerator and denominator are the <em>joint</em> probabilities <span class="math notranslate nohighlight">\(P(M_i \cap R_j) = P(R_j|M_i) P(M_i)\)</span>, which are found by multiplying each element of the conditional probability matrix with the appropriate message probability. In our case, since all messages are equally likely, we can just multiply every element of <code class="docutils literal notranslate"><span class="pre">P_RgM</span></code> by 0.1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P_MR</span> <span class="o">=</span> <span class="n">P_RgM</span> <span class="o">*</span> <span class="mf">.1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The probability <span class="math notranslate nohighlight">\(P(M_4|R_4) = \frac{ P(M_4 \cap R_4) } { \sum_{i=0}^{9} P(M_i, R_4) } \)</span> is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P_MR</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">P_MR</span><span class="p">[:,</span><span class="mi">4</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8552369077306735
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can look at the probabilities of all messages given <span class="math notranslate nohighlight">\(R_4\)</span>, of which <span class="math notranslate nohighlight">\(P(M_4|R_4)\)</span> is the most likely.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">P_MR</span><span class="p">[:,</span><span class="mi">4</span><span class="p">]</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">P_MR</span><span class="p">[:,</span><span class="mi">4</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="c1"># barplot of conditional probabilities</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/83a452988216d2d5769ed6073bbcd3ae30e77acfbd2e0c12479ce34295a4d0f2.png" src="_images/83a452988216d2d5769ed6073bbcd3ae30e77acfbd2e0c12479ce34295a4d0f2.png" />
+</div>
+</div>
+<p>Notice how the conditional probability <span class="math notranslate nohighlight">\(P(M_3|R_4)\)</span> is much smaller than <span class="math notranslate nohighlight">\(P(M_0|R_4)\)</span>, which means that if Bob receives <span class="math notranslate nohighlight">\(R_4\)</span>, Alice is more likely to have sent <span class="math notranslate nohighlight">\(M_0\)</span> rather than <span class="math notranslate nohighlight">\(M_3\)</span>. That’s because the conditional probabilities rely on the Hamming distances of the codes, which are not necessarily similar to the numerical distances of the messages/digits. The <a class="reference external" href="https://en.wikipedia.org/wiki/Tesseract">tesseract</a> plot below illustrates the Hamming distances of all 4-digit binary codes, given by the minimum number of hops between two node/codes.</p>
+<p><a title="en:User:Cburnett, CC BY-SA 3.0 &lt;http://creativecommons.org/licenses/by-sa/3.0/&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Hamming_distance_4_bit_binary_example.svg"><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Hamming_distance_4_bit_binary_example.svg/256px-Hamming_distance_4_bit_binary_example.svg.png"><img alt="Hamming distance 4 bit binary example" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Hamming_distance_4_bit_binary_example.svg/256px-Hamming_distance_4_bit_binary_example.svg.png" style="width: 256px;" /></a></a></p>
+</section>
+<section id="code-performance">
+<h3>Code Performance<a class="headerlink" href="#code-performance" title="Permalink to this headline">#</a></h3>
+<p>For overall code performance, we look at the probability of decoding the correct message, as well as the probability of errors, either <em>detected</em> or <em>undetected</em>. In our example, the overall probability (across all messages) of a correct communication is</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{i=0}^{9} P( M_i \cap R_i ) \]</div>
+<p>This is given by the sum of the diagonal elements of the joint probability matrix, according to the following plot:
+<img alt="code_matrix" src="_images/code_matrix.svg" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">P_MR</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.81450625
+</pre></div>
+</div>
+</div>
+</div>
+<p>The probability of a <em>detected</em> error, i.e. of received code mapping to <span class="math notranslate nohighlight">\(err\)</span>, is <span class="math notranslate nohighlight">\( \sum_{i=0}^{9} \sum_{j=10}^{15} P( M_i \cap R_j )\)</span>, which is the sum of the last 6 columns of <code class="docutils literal notranslate"><span class="pre">P_MR</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">P_MR</span><span class="p">[:,</span><span class="mi">10</span><span class="p">:</span><span class="mi">16</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.048525000000000006
+</pre></div>
+</div>
+</div>
+</div>
+<p>And the probability of an <em>undetected</em> error is the sum of the off-diagonal elements of the <span class="math notranslate nohighlight">\(10\times 10\)</span> sub-matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">P_MR</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">P_MR</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.13696874999999975
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is a 13.7% chance of getting an undetenced error, i.e. receiving a code that maps to a different message (but not <span class="math notranslate nohighlight">\(err\)</span>) than the intended one.</p>
+</section>
+<section id="modified-code">
+<h3>Modified Code<a class="headerlink" href="#modified-code" title="Permalink to this headline">#</a></h3>
+<p>Now that we know how to measure code performance, we can test different coding schemes. The basic idea is to employ a coding scheme that maps messages “far apart” from each other (in an appropriate <a class="reference external" href="https://en.wikipedia.org/wiki/Metric_(mathematics)">distance function</a>) so as to minimize the probability of mixing them up. For example, let’s change the coding scheme so that <span class="math notranslate nohighlight">\(9\)</span> maps to <span class="math notranslate nohighlight">\((1111)\)</span>, which is farther apart from the other codes in Hamming distance, and hence less likely to get mixed up. The joint probability matrix for this scheme is shown below (note the change in the last row’s code):
+<img alt="Modified code" src="_images/mod_code.svg" />
+and caclulated as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P_MR_v2</span> <span class="o">=</span> <span class="p">(</span> <span class="n">p</span> <span class="o">**</span> <span class="n">dist_mat</span><span class="p">[</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">15</span><span class="p">],</span> <span class="p">:]</span> <span class="p">)</span> <span class="o">*</span> \
+    <span class="p">(</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span> <span class="mi">4</span> <span class="o">-</span> <span class="n">dist_mat</span><span class="p">[</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">15</span><span class="p">],</span> <span class="p">:]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The overall probability of correct transmission is the same as before; this is straightforward to prove by symmetry. Therefore, the total probability of incorrent transmission is also the same, but the difference lies in the probability of detected vs silent errors. The probability of a detected error is now</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">P_MR_v2</span><span class="p">[:,</span><span class="mi">9</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.057075
+</pre></div>
+</div>
+</div>
+</div>
+<p>and the probability of a silent error is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span> <span class="n">P_MR_v2</span><span class="p">[:,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">15</span><span class="p">]]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">P_MR_v2</span><span class="p">[:,</span><span class="mi">9</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.12841875000000014
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is lower than the previous probability of 13.7%. The take-away is that mapping messages farther appart allows us to better detect errors.</p>
+</section>
+<section id="error-correction">
+<h3>Error Correction<a class="headerlink" href="#error-correction" title="Permalink to this headline">#</a></h3>
+<p>Another common strategy is to automatically <em>correct</em> errors, by mapping mistakenly transmitted codes onto their likely original messages, which is called <a class="reference external" href="https://en.wikipedia.org/wiki/Error_correction_code#Forward_error_correction">forward error correction</a>. In the modified example above (<span class="math notranslate nohighlight">\(9 \leftrightarrow (1111)\)</span>), assume we also decode <span class="math notranslate nohighlight">\((1110)\)</span> onto the digit <span class="math notranslate nohighlight">\(9\)</span>, since <span class="math notranslate nohighlight">\((1110)\)</span> is less likely to have come from other messages (except for <span class="math notranslate nohighlight">\(6 \leftrightarrow (0110)\)</span>, but ignore this). The probability of correct transmission now includes an extra code, at the expense of inflating the probability of <em>silent</em> errors, as shown below:
+<img alt="Error Correction Code" src="_images/ecc.svg" />
+The probability of correct transmission is now slightly higher:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="nb">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span> <span class="n">P_MR_v2</span><span class="p">[:,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">15</span><span class="p">]]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">+</span> <span class="n">P_MR_v2</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">14</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8187931249999999
+</pre></div>
+</div>
+</div>
+</div>
+<p>but the probability of a silent error also increased:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">P_MR_v2</span><span class="p">[:,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">]],</span> <span class="n">axis</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span> <span class="n">P_MR_v2</span><span class="p">[:,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">15</span><span class="p">]]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">-</span> <span class="n">P_MR_v2</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">14</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.13364437499999973
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="redundancy">
+<h3>Redundancy<a class="headerlink" href="#redundancy" title="Permalink to this headline">#</a></h3>
+<p>For fixed code length, there will be trade-offs between correct transmission, detected/corrected, and silent errors. But there is a way to improve <em>all</em> metrics by introducing <a class="reference external" href="https://en.wikipedia.org/wiki/Redundancy_(information_theory)">redundancy</a>, i.e. transmitting more bits that the absolutely minimum necessary. Essentially, this “expands” the space of possible codes so that you can map messages farther apart.</p>
+<p>But redundancy introduces also concerns of <em>efficiency</em>: for example, you could transmit a digit with miniscule probability of error using a 1000-bit code, but that would use up too much time and resources for transmitting 1000 instead of 4 bits. There is actually a celebrated <a class="reference external" href="https://en.wikipedia.org/wiki/Noisy-channel_coding_theorem">theorem</a> that provides the optimal trade-off between the accuracy and redundancy (code length) of a channel, unfortunately without identifying the optimal code that achieves it; ironically, the theorem’s proof uses <em>random</em> codes! In fact, even for “simple” setups such as the above, finding the optimal code is an <a class="reference external" href="https://math.stackexchange.com/questions/4416045/how-to-find-the-maximal-minimal-distance-between-m-points-in-a-k-dimension-hammi">open problem</a>.</p>
+</section>
+</section>
+<section id="problems">
+<h2>Problems<a class="headerlink" href="#problems" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>Assume the original setup above, i.e a binary symmetric channel (<span class="math notranslate nohighlight">\(p=.05\%\)</span>) with binary representation for the 10 digits. To minimize errors, you decide to transmit every bit in the binary representation <em>3 times</em>, and take the majority bit as received; this is an example of a <a class="reference external" href="https://en.wikipedia.org/wiki/Repetition_code">repetition code</a>. E.g., <span class="math notranslate nohighlight">\(2\)</span> would be mapped to <span class="math notranslate nohighlight">\((0010)\)</span>, which would be transmitted as <span class="math notranslate nohighlight">\(((000)(000)(111)(000))\)</span>. At the other end, if Bob received <span class="math notranslate nohighlight">\(( (010) (\cdots)(\cdots)(\cdots) )\)</span>, he would automatically correct <span class="math notranslate nohighlight">\((010)\)</span> to <span class="math notranslate nohighlight">\(0\)</span>, since 2/3 bits are <span class="math notranslate nohighlight">\(0\)</span>, etc. Find the probability of correct transmission for this scheme; this is a simple enough analytical caclulation that does not require Python. <br>
+(Note: This is an extension of Execise 2.12.(b) from <a class="reference external" href="https://drive.google.com/file/d/1VmkAAGOYCTORq1wxSQqy255qLJjTNvBI/view">B&amp;W</a>. )</p></li>
+<li><p>Consider the <a class="reference external" href="https://en.wikipedia.org/wiki/Two-out-of-five_code">two-out-of-five code</a>, where each digit is mapped to a 5-bit string with two <span class="math notranslate nohighlight">\(1\)</span>’s and three <span class="math notranslate nohighlight">\(0\)</span>’s, as follows:
+| Digit | Binary Code |
+|:—–:|:——:|
+|   1   | 00011  |
+|   2   | 00101  |
+|   3   | 00110  |
+|   4   | 01001  |
+|   5   | 01010  |
+|   6   | 01100  |
+|   7   | 10001  |
+|   8   | 10010  |
+|   9   | 10100  |
+|   0   | 11000  |</p></li>
+</ol>
+<p>There are exactly <span class="math notranslate nohighlight">\( { 5 \choose 2 }= 10\)</span> such codes, all either 2 or 4 bits apart in Hamming distance. Using a binary symmetric channel with <span class="math notranslate nohighlight">\(p=5\%\)</span>, calculate the probability of correct transmission, detected error, and undetected error. <br>
+(Note there is no error correction in this scheme, any received code without two <span class="math notranslate nohighlight">\(1\)</span>’s is mapped to <span class="math notranslate nohighlight">\(err\)</span>).</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2.%20Counting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Counting</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="4.%20Discrete%20Random%20Variables.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Discrete Random Variables</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-symmetric-channel">Binary Symmetric Channel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-representation-code">Binary Representation Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-probabilities">Conditional Probabilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-performance">Code Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modified-code">Modified Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-correction">Error Correction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redundancy">Redundancy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sotirios Damouras
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

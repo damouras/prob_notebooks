@@ -1,0 +1,676 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Discrete Random Variables &#8212; Probability Notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '4. Discrete Random Variables';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Problem Solutions" href="Solutions.html" />
+    <link rel="prev" title="Conditional Probability" href="3.%20Conditional%20Probability.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Two_red_dice_01.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/Two_red_dice_01.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Probability Notebooks
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.%20Probability%20Models.html">Probability Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20Counting.html">Counting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20Conditional%20Probability.html">Conditional Probability</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Discrete Random Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Solutions.html">Problem Solutions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/damouras/probability_notebooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/damouras/probability_notebooks/issues/new?title=Issue%20on%20page%20%2F4. Discrete Random Variables.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/4. Discrete Random Variables.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Discrete Random Variables</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-random-numbers">Pseudo-Random Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-congruence-generators">Linear Congruence Generators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prng-in-python">PRNG in Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binomial-distribution">Binomial Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometric-dsitribution">Geometric Dsitribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="discrete-random-variables">
+<h1>Discrete Random Variables<a class="headerlink" href="#discrete-random-variables" title="Permalink to this headline">#</a></h1>
+<p>Random Variables (RVs) represent quantities that depend on the outcome of a random experiment, and they are a convenient way of building probability models. Most realistic probability models are too complex to examine <a class="reference external" href="https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression">analytically</a>, so we often rely on <a class="reference external" href="https://en.wikipedia.org/wiki/Computer_simulation">computer simulations</a> of the random phenomenon at hand. But in order to simulate probability models, we must be able to <a class="reference external" href="https://en.wikipedia.org/wiki/Random_number_generation">generate random numbers</a>, i.e. realizations of RVs. In real life, we can generate random numbers by flipping coins, rolling dice, <a class="reference external" href="https://phys.org/news/2004-09-random-cosmic-rays.html">measuring cosmic radiation</a>, or some other unpredictable process. Below we look at how computers generate random numbers, and use them to confirm analytical results on discrete RVs.</p>
+<section id="pseudo-random-numbers">
+<h2>Pseudo-Random Numbers<a class="headerlink" href="#pseudo-random-numbers" title="Permalink to this headline">#</a></h2>
+<p>Computers are <em>deterministic</em> machines that cannot generate <em>truly</em> random numbers by running a program (although one can get better  numbers with appropriate <a class="reference external" href="https://en.wikipedia.org/wiki/Hardware_random_number_generator">hardware</a>). But they can be programmed to efficiently generate sequences that, although deterministic, are highly irregular and unpredictable, i.e. you cannot figure out the next value by observing past ones. The values thus generated are called <a class="reference external" href="https://en.wikipedia.org/wiki/Pseudo-">pseudo</a>-random numbers, and the programs are called <a class="reference external" href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator">pseudo-random number generators (PRNG)</a>. The <em>pseudo</em> qualifier is frequently dropped even for numbers generated by a computer, which are not random in the probabilistic sense of the word.</p>
+</section>
+<section id="linear-congruence-generators">
+<h2>Linear Congruence Generators<a class="headerlink" href="#linear-congruence-generators" title="Permalink to this headline">#</a></h2>
+<p>Until recently, the most commonly used PRNGs were <a class="reference external" href="https://en.wikipedia.org/wiki/Linear_congruential_generator">Linear Congruential Generators (LCG)</a>. The idea behind these is very simple: you apply a <em>modulo</em> operation to a <em>linear recurrence</em>:
+<span class="math notranslate nohighlight">\(x_{n+1} = (a \cdot x_n + c ) \mod m ; \quad \quad n \ge 0\)</span>
+There are four parameters in a LCG: the <em>modulus</em> <span class="math notranslate nohighlight">\(m\)</span>, the <em>multiplier</em> <span class="math notranslate nohighlight">\(a\)</span>, the <em>increment</em> <span class="math notranslate nohighlight">\(c\)</span>, and the sequence’s initial value <span class="math notranslate nohighlight">\(x_0\)</span>, called the <em>seed</em>. Obviously, all numbers produced this way are in <span class="math notranslate nohighlight">\(\{0,1,\ldots,m-1\}\)</span>, because they are remainders of division by <span class="math notranslate nohighlight">\(m\)</span>. Below is an example for specific values <span class="math notranslate nohighlight">\(m=100, a=17, c=45, x_0=39\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">45</span><span class="p">;</span> 
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">25</span><span class="p">;</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">39</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">):</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span> <span class="p">)</span> <span class="o">%</span> <span class="n">m</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[39, 8, 81, 22, 19, 68, 1, 62, 99, 28, 21, 2, 79, 88, 41, 42, 59, 48, 61, 82, 39, 8, 81, 22, 19]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This generates a seemingly random sequence, but if you look more closely you can see that it repeats after revisiting the seed <span class="math notranslate nohighlight">\(x_0=x_{20}=39\)</span>. By construction, <em>all</em> LCG sequences (for any parameters) will repeat after some point, and the number of steps until they do so is called the <em>period length</em>. This is a result of modular arithmetic and the fact that the recurrence depends on only the last value: you can get at most <span class="math notranslate nohighlight">\(\# m \)</span> distinct numbers from the <span class="math notranslate nohighlight">\(\mod m\)</span> function, so by the <a class="reference external" href="https://en.wikipedia.org/wiki/Pigeonhole_principle">pigeonhole principle</a> the seed will repeat after at most <span class="math notranslate nohighlight">\(m\)</span> steps. Note that the period length of any LCG is bounded by <span class="math notranslate nohighlight">\(m\)</span>, but depending on the other parameters it can be smaller (e.g., with <span class="math notranslate nohighlight">\(m=100\)</span> above, we got a period of <span class="math notranslate nohighlight">\(20\)</span>). Obviously we want a high period for our PRNG, which makes it necessary (but not sufficient) to have a high modulus. Besides long periods, we want the generated numbers to be <em>evenly</em> distributed and <em>irregular</em> (translated in probability as <em>uniform</em> and <em>independent</em>). Choosing good PRNGs is a whole research area in itself, and there are <a class="reference external" href="https://en.wikipedia.org/wiki/Randomness_test">tests</a> to check the quality of “random” numbers. For example, the <a class="reference external" href="https://en.wikipedia.org/wiki/RANDU">RANDU</a> LCG used in 1960’s mainframes gave very regular 3D patterns like the one below in <a class="reference external" href="https://en.wikipedia.org/wiki/Spectral_test">spectal tests</a></p>
+<p><a title="The original uploader was Luis Sanchez at English Wikipedia., CC BY-SA 3.0 &lt;http://creativecommons.org/licenses/by-sa/3.0/&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Randu.png"><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Randu.png/512px-Randu.png"><img alt="Randu" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Randu.png/512px-Randu.png" style="width: 512px;" /></a></a></p>
+<p>We can visually inspect the quality of a popular LCG specification in 1D (<a class="reference external" href="https://en.wikipedia.org/wiki/Histogram">histogram</a>), 2D, and 3D (<a class="reference external" href="https://en.wikipedia.org/wiki/Scatter_plot">scatterplots</a>); as desired, there are no discernible patterns in these plots below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">32</span><span class="p">;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1664525</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">1013904223</span> <span class="c1"># parameters</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2000</span>                         <span class="c1"># initialize list </span>
+<span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">123456789</span>                       <span class="c1"># set seed</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">):</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span> <span class="p">)</span> <span class="o">%</span> <span class="n">m</span>
+    
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span> <span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter3D</span><span class="p">(</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">)]);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8bcfbc36c52cbe3d01589dfcd1ce73fb4c0290cf133d9b6eff2c16e3db5b1351.png" src="_images/8bcfbc36c52cbe3d01589dfcd1ce73fb4c0290cf133d9b6eff2c16e3db5b1351.png" />
+</div>
+</div>
+</section>
+<section id="prng-in-python">
+<h2>PRNG in Python<a class="headerlink" href="#prng-in-python" title="Permalink to this headline">#</a></h2>
+<p>We will not dig deeper into the gory details of PRNGs, but it is useful to know the basics. From now on we will just use default libraries which are vetted and good enough for most applications (unless you are working on cryptography or online gambling). Python’s <a class="reference external" href="https://docs.python.org/3/library/random.html"><code class="docutils literal notranslate"><span class="pre">random</span></code></a> library uses the <a class="reference external" href="https://en.wikipedia.org/wiki/Mersenne_Twister">Mersenne Twister</a>, a variation on LCGs with better properties; e.g., it has a period length of <span class="math notranslate nohighlight">\(2^{19937}-1\)</span> (for comparison, the number of particles in the known universe is <span class="math notranslate nohighlight">\(\sim 2^{268}\)</span>). The <code class="docutils literal notranslate"><span class="pre">random</span></code> library allows you to set the <em>seed</em> (if you don’t, it uses the system time), which is useful for debugging code: simulations can and should give different results every time you run then, but if you fix the seed you can compare results between program runs.</p>
+<p>PRNGs generate uniformly distributed integers in some range <span class="math notranslate nohighlight">\([0,m)\)</span>, but for applications we need random numbers from all sorts of distributions. To achieve this, we can <em>manipulate</em> the uniform pseudo-random numbers by appropriate transformations or algorithms. For example, if we need uniform integers in a different range <span class="math notranslate nohighlight">\([0,k)\)</span> where <span class="math notranslate nohighlight">\(k&lt;m\)</span>, we can draw numbers in <span class="math notranslate nohighlight">\([0,m)\)</span> and only keep the ones that are <span class="math notranslate nohighlight">\(&lt;m\)</span>; it is straightforward to prove that the <em>conditional</em> probabilities of the censored numbers will be uniform in <span class="math notranslate nohighlight">\([0,k)\)</span>. If, on the other hand, we need uniform integers in a larger interval <span class="math notranslate nohighlight">\([0,k),\quad k&gt;m\)</span>, we can combine digits from several <span class="math notranslate nohighlight">\([0,m)\)</span> numbers: e.g. for uniform integers in <span class="math notranslate nohighlight">\([0,100)\)</span>, we can use a random <span class="math notranslate nohighlight">\(\{0-9\}\)</span> digit for the ones position, and another random <span class="math notranslate nohighlight">\(\{0-9\}\)</span> digit for the tens position (Note that if you <em>add</em> uniformly distributed numbers, their sum will <em>not</em> be uniform). Using similar but much more efficient transformations, the <code class="docutils literal notranslate"><span class="pre">random</span></code> library can generate pseudo-random numbers from a range of standard distributions, as well as create pseudo-random permutations and samples from collections of objects, like lists. The following example generates 1000 uniform random integers in <span class="math notranslate nohighlight">\(\{0,1,\ldots,9\}\)</span> using the <code class="docutils literal notranslate"><span class="pre">randint</span></code> function, and draws a barplot of their frequecies:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">rnd</span>
+
+<span class="n">rnd</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123456789</span><span class="p">)</span>                <span class="c1"># setting seed</span>
+
+<span class="n">rnd_digits</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span>         <span class="c1"># initializing results list</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">rnd_digits</span><span class="p">)):</span>
+    <span class="n">rnd_digits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rnd</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>   
+<span class="n">counts</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">rnd_digits</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span> <span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/dc65683176c3a99fdd27b39df40185f2cb5aa50ca84745947b1a64d345c4beb2.png" src="_images/dc65683176c3a99fdd27b39df40185f2cb5aa50ca84745947b1a64d345c4beb2.png" />
+</div>
+</div>
+</section>
+<section id="binomial-distribution">
+<h2>Binomial Distribution<a class="headerlink" href="#binomial-distribution" title="Permalink to this headline">#</a></h2>
+<p>We now verify the Probability Mass Function (PMF) of the Binomial<span class="math notranslate nohighlight">\((n,p)\)</span> distribution:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} P(X=x) = \begin{cases} { n \choose x } p^x (1-p)^{n-x}, &amp; x\in \{0,1,\ldots, n\} \\
+0, &amp; \textrm{o/w}
+\end{cases}\end{split}\]</div>
+<p>This and other commmon PMFs are available in Python’s <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html?highlight=stats#module-scipy.stats"><code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code></a> module.
+The Binomial RV arrises as the # of successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials, all with the same probability of success <span class="math notranslate nohighlight">\(p\)</span>. The <code class="docutils literal notranslate"><span class="pre">random.choices</span></code> function can simulate any <em>finite</em> discrete RV, including Bernoulli trials for any <span class="math notranslate nohighlight">\(p\)</span> (we could also generate Binomials directly using <code class="docutils literal notranslate"><span class="pre">scipy.stats.binom.rvs</span></code>, but we want to illustrate how the transformation works). We represent “success” with <span class="math notranslate nohighlight">\(1\)</span> and “failure” with <span class="math notranslate nohighlight">\(0\)</span>, which allows us to <em>sum</em> the results go get Binomial random numbers. The following code generates 1000 Binomial random <em>variates</em> (variate is another name for a realized value of a RV), and plots their relative frequency together with their theoretical PMF.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="mi">3</span>        <span class="c1"># Binomial parameters</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span>        
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>    
+    <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">rnd</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">],</span> <span class="n">k</span><span class="o">=</span><span class="n">n</span><span class="p">)</span> <span class="p">)</span> 
+
+<span class="n">counts</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># Count variate frequencies </span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span> <span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="nb">list</span><span class="p">(</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># Barplot of relative frequencies </span>
+
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">binom</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span> <span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">linefmt</span> <span class="o">=</span> <span class="s1">&#39;C3-&#39;</span><span class="p">,</span> <span class="n">markerfmt</span> <span class="o">=</span> <span class="s1">&#39;C3o&#39;</span> <span class="p">)</span> <span class="c1"># PMF plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Variate Rel. Freq.&#39;</span><span class="p">,</span> <span class="s1">&#39;Theoretical PMF&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a6422db5920c843f331bdacdd4a4b478cda1e8a31ad666ec57450f10cb9d728f.png" src="_images/a6422db5920c843f331bdacdd4a4b478cda1e8a31ad666ec57450f10cb9d728f.png" />
+</div>
+</div>
+<p>The simulated relative frequencies (barplot) are very close to the theoretical probabilities (PMF). This is not by coincidence, as it can be proved (see <a class="reference external" href="https://en.wikipedia.org/wiki/Law_of_large_numbers">Law of Large Numbers</a>) that the relative frequencies will convergence to the theoretical probabilities as the number of variates increases.</p>
+<p>Note that we could also simulate Binomial variates directly with <code class="docutils literal notranslate"><span class="pre">scipy.stats.binom.rvs</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 8,  7,  4,  8, 10])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="geometric-dsitribution">
+<h2>Geometric Dsitribution<a class="headerlink" href="#geometric-dsitribution" title="Permalink to this headline">#</a></h2>
+<p>A Geometric RV has <em>infinite</em> range, so we cannot use Python’s <code class="docutils literal notranslate"><span class="pre">random.choices</span></code> function to generate random variates. Nevertheless, we can generate variates using the definition of the Geometric distribution as the number of Bernoulli trials until the first success. In other words, we can simulate repeated Bernoulli trials until the first success, and measure how long it took. This is not the most efficient approach, especially for small <span class="math notranslate nohighlight">\(p\)</span>, but it verifies how the Geometric comes about. The following code generates <span class="math notranslate nohighlight">\(1000\)</span> Geometric(<span class="math notranslate nohighlight">\(p=1/3\)</span>) variates this way, and plots their frequency barplot against the corresponding Geometric PMF.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span>       <span class="c1"># Geometric Parameter</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Bern</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># initialize iteration</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">Bern</span><span class="p">:</span>
+        <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>           <span class="c1"># Repeated Bernoulli trials until success</span>
+        <span class="n">Bern</span> <span class="o">=</span> <span class="n">rnd</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">])</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
+
+<span class="n">counts</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># Count variate frequencies </span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span> <span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="nb">list</span><span class="p">(</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># Barplot of relative frequencies </span>
+
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">geom</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="p">),</span> <span class="n">geom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">p</span><span class="p">),</span> <span class="n">linefmt</span> <span class="o">=</span> <span class="s1">&#39;C3-&#39;</span><span class="p">,</span> <span class="n">markerfmt</span> <span class="o">=</span> <span class="s1">&#39;C3o&#39;</span> <span class="p">)</span> <span class="c1"># PMF plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Variate Rel. Freq.&#39;</span><span class="p">,</span> <span class="s1">&#39;Theoretical PMF&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/853803a41a61f2b95d61b0598a8f6ed089fdc17163e08079c605d46c91421210.png" src="_images/853803a41a61f2b95d61b0598a8f6ed089fdc17163e08079c605d46c91421210.png" />
+</div>
+</div>
+</section>
+<section id="problems">
+<h2>Problems<a class="headerlink" href="#problems" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>Show (analytically) that if you take the PMF of a discrete uniform RV <span class="math notranslate nohighlight">\(X\)</span> in <span class="math notranslate nohighlight">\([0,m)\)</span> and condition on it being <em>less than</em> <span class="math notranslate nohighlight">\(k\)</span>, with <span class="math notranslate nohighlight">\(k&lt;m\)</span>, then the resulting conditional distribution will be uniform in <span class="math notranslate nohighlight">\([0,k)\)</span>.</p></li>
+<li><p>Use a simulation experiment to verify that the <em>sum</em> of two discrete uniform RVs in <span class="math notranslate nohighlight">\([0,10]\)</span> is <em>not</em> uniformly distributed in <span class="math notranslate nohighlight">\([0,20]\)</span>, by generating <span class="math notranslate nohighlight">\(1000\)</span> variates of the sum and plotting their relative frequency.</p></li>
+<li><p>Use a simulation experiment to verify the <a class="reference external" href="https://en.wikipedia.org/wiki/Memorylessness">memoryless property</a> of the Geometric distribution. More specifically, generate 2000 random variates from the Geometric(<span class="math notranslate nohighlight">\(1/2\)</span>) distribution using <code class="docutils literal notranslate"><span class="pre">scipy.stats.geom.rvs</span></code>, and keep the values that are greater or equal to <span class="math notranslate nohighlight">\(3\)</span>, effectively conditioning on <span class="math notranslate nohighlight">\(X\ge 3\)</span>. Create a relative frequency plot of the <em>excess</em> values, i.e. the original values minus 2, and compare them to the theoretical Geometric(<span class="math notranslate nohighlight">\(1/2\)</span>) PMF.</p></li>
+</ol>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3.%20Conditional%20Probability.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Conditional Probability</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Solutions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Problem Solutions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-random-numbers">Pseudo-Random Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-congruence-generators">Linear Congruence Generators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prng-in-python">PRNG in Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binomial-distribution">Binomial Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometric-dsitribution">Geometric Dsitribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sotirios Damouras
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

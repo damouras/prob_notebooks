@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Counting &#8212; Probability Notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '2. Counting';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Conditional Probability" href="3.%20Conditional%20Probability.html" />
+    <link rel="prev" title="Probability Models" href="1.%20Probability%20Models.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Two_red_dice_01.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/Two_red_dice_01.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Probability Notebooks
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.%20Probability%20Models.html">Probability Models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Counting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20Conditional%20Probability.html">Conditional Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.%20Discrete%20Random%20Variables.html">Discrete Random Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Solutions.html">Problem Solutions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/damouras/probability_notebooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/damouras/probability_notebooks/issues/new?title=Issue%20on%20page%20%2F2. Counting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/2. Counting.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Counting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#labeled-graphs">Labeled Graphs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-graph">Simple graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#digraphs">Digraphs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path-graphs">Path Graphs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bipartite-graphs">Bipartite Graphs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-bipartite-graphs">Complete Bipartite Graphs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connected-graphs">Connected Graphs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unlabeled-graphs">Unlabeled Graphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="counting">
+<h1>Counting<a class="headerlink" href="#counting" title="Permalink to this headline">#</a></h1>
+<p>Counting forms the basis of finite uniform probability measures, but is also fundamental to Discrete Mathematics and <a class="reference external" href="https://en.wikipedia.org/wiki/Combinatorics">Combinatorics</a> in particular. In this notebook, we will be counting <a class="reference external" href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)">graphs</a> which are mathematical structures used to model pairwise <em>relationships</em> between <em>objects</em>. For example, a graph can represent a group of people and their friendships, i.e. a social network. The objects in a graph are called <em>nodes</em> or <em>vertices</em> and are represented by a <em>set</em> <span class="math notranslate nohighlight">\(V\)</span>, and their relations are called <em>edges</em> and are represented by a set of <em>pairs</em> of nodes  <span class="math notranslate nohighlight">\(E \subseteq \{ \{i, j\};  i,j \in V \}\)</span>. For this notebook we will use the <a class="reference external" href="https://networkx.org/">networkx</a> package in Python to specify and visualize graphs, like the one below. (The package also contains a wealth of algorithms for working with graphs.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>  
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>                           <span class="c1"># initialize graph</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="p">)</span>           <span class="c1"># add nodes</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span> <span class="p">[{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">},</span>  <span class="c1"># add edges </span>
+                   <span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">},</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">}</span> <span class="p">])</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>          <span class="c1"># draw graph</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/fbb9597b592c7cdb9435aa701d4db7960c7a05346a0eaefc509531b849b0e32e.png" src="_images/fbb9597b592c7cdb9435aa701d4db7960c7a05346a0eaefc509531b849b0e32e.png" />
+</div>
+</div>
+<p>The node/vertice set for this graph is <span class="math notranslate nohighlight">\(V = \{1,2,3,4,5\}\)</span>, and the edge set is <span class="math notranslate nohighlight">\(E=\{ \{1,2\}, \{1,3\}, \{1,4\}, \{2,4\}, \{2,5\}, \{3,4\} \}\)</span>. Alternatively, a graph may be specified by its <a class="reference external" href="https://en.wikipedia.org/wiki/Adjacency_matrix">adjacency matrix</a>, which is a square (<span class="math notranslate nohighlight">\(n \times n\)</span>) matrix with <span class="math notranslate nohighlight">\(0/1\)</span> values representing the presence/absence of an edge between the row and column indices. For example, the graph above has adjacency matrix:</p>
+<a class="reference internal image-reference" href="_images/adjacency_mat.svg"><img alt="adjacency matrix" src="_images/adjacency_mat.svg" width="200px" /></a>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">to_numpy_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0., 1., 1., 1., 0.],
+        [1., 0., 0., 1., 1.],
+        [1., 0., 0., 1., 0.],
+        [1., 1., 1., 0., 0.],
+        [0., 1., 0., 0., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the matrix is <em>symmetric</em>, i.e. if there is an edge from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span>, there is one from <span class="math notranslate nohighlight">\(j\)</span> to <span class="math notranslate nohighlight">\(i\)</span>. Both perspectives (sets &amp; adjacency matrices) will help us count the number of possible graphs of different types.</p>
+<section id="labeled-graphs">
+<h2>Labeled Graphs<a class="headerlink" href="#labeled-graphs" title="Permalink to this headline">#</a></h2>
+<p>We first look at graphs with <em>labeled/distinguishable</em> nodes, since they are easier to count. (In unlabeled graphs, node identities don’t matter, only the edge structure.)</p>
+<section id="simple-graph">
+<h3>Simple graph<a class="headerlink" href="#simple-graph" title="Permalink to this headline">#</a></h3>
+<p>A simple graph has no repeated edges or loops (edges from a node to iteself). With <span class="math notranslate nohighlight">\(n\)</span> nodes, there are a total of</p>
+<div class="math notranslate nohighlight">
+\[ 2^{ {n \choose 2} } = 2^{n(n-1)/2} \]</div>
+<p>different graphs, since there are <span class="math notranslate nohighlight">\( {n \choose 2} \)</span> possible pairs of nodes, and each can be an edge or not (2 choices for each pair). Another way to look at it is through the adjacency matrix: due to symmetry there are <span class="math notranslate nohighlight">\(n(n-1)/2\)</span> uniquely determined off-diagonal elements (e.g. elements of the top-right triangle), with two options (0/1) each. Note that for this count, we do not require all nodes to be <a class="reference external" href="https://en.wikipedia.org/wiki/Connectivity_(graph_theory)">connected</a>.</p>
+</section>
+<section id="loops">
+<h3>Loops<a class="headerlink" href="#loops" title="Permalink to this headline">#</a></h3>
+<p>If the graph contains <a class="reference external" href="https://en.wikipedia.org/wiki/Loop_(graph_theory)">loops</a>, then there are</p>
+<div class="math notranslate nohighlight">
+\[ 2^{ {n \choose 2} + n } \]</div>
+<p>different graphs, since there are <span class="math notranslate nohighlight">\(n\)</span> additional possible loop edges, i.e. pairs of the form <span class="math notranslate nohighlight">\(\{i,i\}\)</span> (or diagonal elements of the adjacency matrix).</p>
+</section>
+<section id="digraphs">
+<h3>Digraphs<a class="headerlink" href="#digraphs" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Directed_graph">Directed graphs</a>, or <em>digraphs</em>, are graphs whose edges are <em>directional</em>, i.e. we differentiate between an edge from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span> and an edge from <span class="math notranslate nohighlight">\(j\)</span> to <span class="math notranslate nohighlight">\(i\)</span>. Directional edges are represented by <em>ordered</em> pairs of nodes, and drawn as <em>arrows</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="n">D</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">D</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span> <span class="p">[</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">]</span> <span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/defac233e98427f6feb15d5ee6c85312bb6eb14991a11422df0cc57987853858.png" src="_images/defac233e98427f6feb15d5ee6c85312bb6eb14991a11422df0cc57987853858.png" />
+</div>
+</div>
+<p>The adjacency matrix of a digraph is no longer symmetric: the <span class="math notranslate nohighlight">\((i,j)^{th}\)</span> entry represents an arrow from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span>, and vice-versa:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">to_numpy_matrix</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0., 1., 1.],
+        [0., 0., 1.],
+        [1., 0., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Therefore, there are <span class="math notranslate nohighlight">\(2^{n(n-1)}\)</span> possible labeled digraphs.</p>
+</section>
+<section id="path-graphs">
+<h3>Path Graphs<a class="headerlink" href="#path-graphs" title="Permalink to this headline">#</a></h3>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Path_graph">path graph</a> connects all nodes in a “sequence”, e.g.:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>           
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span> <span class="p">[{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span> <span class="p">])</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0c906c03b69cc58115b7fe36f4ac79b2a120730d00038a78d77eec8663b8189c.png" src="_images/0c906c03b69cc58115b7fe36f4ac79b2a120730d00038a78d77eec8663b8189c.png" />
+</div>
+</div>
+<p>The number of labeled path graphs is <em>not</em> equal to <span class="math notranslate nohighlight">\(n!\)</span>, i.e. the number of node arrangments (permutations). Note that the (undirected) graphs <span class="math notranslate nohighlight">\((1-2-3)\)</span> and <span class="math notranslate nohighlight">\((3-2-1)\)</span> are considered identical, i.e. there is no notion of start or finish. <br>
+Here we use an <em>overcounting</em> strategy to find the total number of labeled path graphs of <span class="math notranslate nohighlight">\(n\)</span> nodes. The strategy involves counting more complex structures than required, and then adjusting the count by division or subtraction. In our case, there are <span class="math notranslate nohighlight">\(n!\)</span> paths with specified beginning and end, and by dividing this count by 2 (for either direction) we get the desired result <span class="math notranslate nohighlight">\(\frac{n!}{2}\)</span>.</p>
+<p>(Note: the number of <em>directed</em> path graphs, which have a natural beggining and end, is <span class="math notranslate nohighlight">\(n!\)</span>).</p>
+</section>
+<section id="bipartite-graphs">
+<h3>Bipartite Graphs<a class="headerlink" href="#bipartite-graphs" title="Permalink to this headline">#</a></h3>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Bipartite_graph">bipartite graph</a> (or bigraph) is one whose vertices can be partitioned into two sets <span class="math notranslate nohighlight">\(V_1, V_2\)</span> so that is every edge only connects nodes <em>between</em> the sets</p>
+<a class="reference internal image-reference" href="_images/bigraph.png"><img alt="bipartite graph" src="_images/bigraph.png" style="width: 200px;" /></a>
+<p>The adjacency matrix of a bigraph has a special structure, with <span class="math notranslate nohighlight">\(0\)</span>’s within the disjoint sets of nodes, and possible <span class="math notranslate nohighlight">\(1\)</span>’s only between them:</p>
+<a class="reference internal image-reference" href="_images/bigraph_adj.png"><img alt="bigraph_adjacency_matrix" src="_images/bigraph_adj.png" style="width: 200px;" /></a>
+<p>(The rows and columns of the matrix have been re-order so that the node sets appear contiguous, but that is not necessary.)</p>
+<p>For fixed <span class="math notranslate nohighlight">\(m \in \{1,\ldots, n-1\}\)</span>, there are <span class="math notranslate nohighlight">\({n \choose m}\)</span> ways to partition <span class="math notranslate nohighlight">\(n\)</span> nodes into sets of size <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n-m\)</span>,  and <span class="math notranslate nohighlight">\(m \cdot (n-m)\)</span> potential edges with 2 choices each (rectangle in adjacency matrix). Hence, there are <span class="math notranslate nohighlight">\({n \choose m} 2^{m(n-m)}\)</span> such (labeled) bigraphs of sets sizes <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\((n-m)\)</span>. Nevertheless, counting <em>all</em> bigraphs for all <span class="math notranslate nohighlight">\(m\)</span> is more involved (e.g. a totally disconnected graph is a digraph for <em>any</em> value of <span class="math notranslate nohighlight">\(m\)</span>, and would therefore be over-counted).</p>
+</section>
+<section id="complete-bipartite-graphs">
+<h3>Complete Bipartite Graphs<a class="headerlink" href="#complete-bipartite-graphs" title="Permalink to this headline">#</a></h3>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Complete_bipartite_graph">complete bigraph</a> has <em>every</em> node in one set connected to <em>every</em> node in the other set:</p>
+<a class="reference internal image-reference" href="_images/complete_bigraph.png"><img alt="complete bipartite graph" src="_images/complete_bigraph.png" style="width: 200px;" /></a>
+<p>Note that for given node sets, there is only <em>one</em> complete bigraph. Therefore, the number of (labeled) complete graphs is just the number of ways to split <span class="math notranslate nohighlight">\(n\)</span> nodes into two sets. Here we use another counting strategy: breaking up the problem into disjoint and exhaustive cases, and adding their counts to get the total. <br>
+The sizes of the node sets must sum up to <span class="math notranslate nohighlight">\(n\)</span>, so there are <span class="math notranslate nohighlight">\(\lfloor n/2 \rfloor\)</span> <em>distinct</em> partition sizes  (b/c <span class="math notranslate nohighlight">\( \{m,n-m\} = \{n-m,m\}\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[ \{1,n-1\}, \{2,n-2\}, \ldots, \{ \lfloor n/2 \rfloor, n - \lfloor n/2 \rfloor \} ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lfloor n/2 \rfloor\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Floor_and_ceiling_functions">floor function</a>. The total number of labeled complete bipartite graphs is:</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{i=1}^{\lfloor n/2 \rfloor} { n \choose m}\]</div>
+</section>
+<section id="connected-graphs">
+<h3>Connected Graphs<a class="headerlink" href="#connected-graphs" title="Permalink to this headline">#</a></h3>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Connectivity_(graph_theory)#Connected_vertices_and_graphs">connected graph</a> has a path between any two nodes or, in other words, it has no isolated <a class="reference external" href="https://en.wikipedia.org/wiki/Induced_subgraph">subgraphs</a>; e.g., every complete graph is connected. The number of connected graphs cannot be found directly by multiplication/factorials, so we will employ a more advanced strategy of  deriving a <em>recurrence relation</em>, which can be solve iteratively. <br>
+Let <span class="math notranslate nohighlight">\(C_k\)</span> be the number of connected graphs with <span class="math notranslate nohighlight">\(k\)</span> nodes. There are <span class="math notranslate nohighlight">\(2^{ {n \choose 2} }\)</span> possible simple graphs of <span class="math notranslate nohighlight">\(n\)</span> nodes, and we can partition them into <span class="math notranslate nohighlight">\(n\)</span> classes as follows: Fix a node, say <span class="math notranslate nohighlight">\(1\)</span>, and considered the maximal <em>connected subgraph</em> containing that node:
+<a class="reference internal" href="_images/connected_subgraph.png"><img alt="connected subgraph decomposition" src="_images/connected_subgraph.png" style="width: 200px;" /></a>
+In the plot above, node <span class="math notranslate nohighlight">\(1\)</span> belongs to an isolated, connected subgraph of size <span class="math notranslate nohighlight">\(k\)</span>, and the remaining nodes belong to another <em>not necessarily connected</em>  subgraph. There are <span class="math notranslate nohighlight">\({n-1 \choose k-1}\)</span> ways to select the <span class="math notranslate nohighlight">\(k-1\)</span> nodes (besides node <span class="math notranslate nohighlight">\(1\)</span>), and <span class="math notranslate nohighlight">\(C_k\)</span> ways to form the connected subgraph, according to our assumption. And, independently, there are <span class="math notranslate nohighlight">\(2^{ {n-k \choose 2} }\)</span> ways to form the other subgraph. If combine all possible sizes <span class="math notranslate nohighlight">\(k=1,\ldots,n\)</span> of connected subgraphs containing node <span class="math notranslate nohighlight">\(1\)</span>, we get the total number of simple labeled graphs, i.e.:</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{k=1}^{n} { n-1 \choose k-1 } C_k 2^{ { n-k \choose 2 } } = 2^{ {n \choose 2} } \]</div>
+<p>This relation can be used iteratively, for <span class="math notranslate nohighlight">\(C_1=1\)</span> and increasing <span class="math notranslate nohighlight">\(n=2,\ldots\)</span>, to find values of <span class="math notranslate nohighlight">\(C_n\)</span>. The sequence of solutions is available at <a class="reference external" href="http://oeis.org/A001187/list">OEIS</a> (<em>On-Line Encyclopedia of Integer Sequences</em>). E.g., for <span class="math notranslate nohighlight">\(n=3\)</span> we have <span class="math notranslate nohighlight">\(C_3=4\)</span>, verified by:
+<a class="reference internal" href="_images/C_3.png"><img alt="connected graphs of size 3" src="_images/C_3.png" style="width: 300px;" /></a></p>
+</section>
+</section>
+<section id="unlabeled-graphs">
+<h2>Unlabeled Graphs<a class="headerlink" href="#unlabeled-graphs" title="Permalink to this headline">#</a></h2>
+<p>So far we only looked at labeled graphs, i.e. graphs with distinguishable nodes. In many cases, the labeling of the nodes is not relevant, only the “structure” of the graph. For example, there are only 2 different unlabeled connected graphs of 3 nodes, the “path” and the “triangle”:
+<a class="reference internal" href="_images/unlabeled_C_3.png"><img alt="connected unlabeled graphs of size 3" src="_images/unlabeled_C_3.png" style="width: 150px;" /></a>
+Comparing that to the 4 labeled connected graphs, the 3 labeled “path” graphs are all equivalent to 1 unlabeled “path”. The 3 labeled “path” graphs are called <a class="reference external" href="https://en.wikipedia.org/wiki/Graph_isomorphism">isomorphic</a>, because they have the same <em>shape</em>, i.e. you can rearrange their labels and get the same graph. With unlabeled graphs, we are essentially counting <a class="reference external" href="https://en.wikipedia.org/wiki/Equivalence_class">equivalence classes</a> under isomorphism.</p>
+<p>Counting unlabeled graphs is hard, because there are varying numbers of isomorphic labeled graphs of each type. In the above example, there are 3 isomorphic “path” graphs, but only one “triangle” graph. Nevertheless, we can easily find a lower bound on the number of unlabeled simple graphs, since there are at most <span class="math notranslate nohighlight">\(n!\)</span> permutations/rearrangements of the labels. Therefore, there are <em>at least</em></p>
+<div class="math notranslate nohighlight">
+\[ \frac{ 2^{ {n \choose 2} } } {n!} \]</div>
+<p>simple unlabelled graphs, and this lower bound becomes tighter as <span class="math notranslate nohighlight">\(n\)</span> increases (there are fewer isomorphisms as the graphs get larger). The are more sophisticated ways to count simple unlabeled graphs, whose counts are given <a class="reference external" href="http://oeis.org/A000088">here</a>. You can verify the count for <span class="math notranslate nohighlight">\(n=3\)</span> from the plot below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">graph_atlas_g</span><span class="p">()</span> <span class="c1"># Returns the list of all unlabeled graphs of up to seven nodes </span>
+                       <span class="c1"># unlabeled graphs with 3 nodes are in U[4:7] </span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>  <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyles</span> <span class="o">=</span> <span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyles</span> <span class="o">=</span> <span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyles</span> <span class="o">=</span> <span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span> <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">.1</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4822a5bad4b92a875d9dc408c42e045c1d4ea29a29b8d037a5c1c1452cf2bf69.png" src="_images/4822a5bad4b92a875d9dc408c42e045c1d4ea29a29b8d037a5c1c1452cf2bf69.png" />
+</div>
+</div>
+</section>
+<section id="problems">
+<h2>Problems<a class="headerlink" href="#problems" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>Find the number of labeled, directed graphs of node size <span class="math notranslate nohighlight">\(n\)</span> <em>including</em> possible loops.</p></li>
+<li><p>Find the number of simple <a class="reference external" href="https://en.wikipedia.org/wiki/Complete_graph">complete graphs</a>, either labeled or unlabeled.</p></li>
+<li><p>A directed, complete graph is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Tournament_(graph_theory)">tournament</a>. Find the number of labeled tournaments of node size <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+<li><p>In a labeled <em>complete</em> graph of size <span class="math notranslate nohighlight">\(n\)</span>, show that the number of paths of length <span class="math notranslate nohighlight">\(0 \le k \le n-2 \)</span> between two nodes is <span class="math notranslate nohighlight">\( \frac{ (n-2)! }{(n-2-k)! }\)</span>.</p></li>
+<li><p>Use 4. to show that the total number of paths between two nodes in a labeled complete graph of size <span class="math notranslate nohighlight">\(n\)</span> is
+<span class="math notranslate nohighlight">\(  \lfloor e \cdot (n−2)!  \rfloor\)</span></p></li>
+</ol>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1.%20Probability%20Models.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Probability Models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="3.%20Conditional%20Probability.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Conditional Probability</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#labeled-graphs">Labeled Graphs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-graph">Simple graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#digraphs">Digraphs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path-graphs">Path Graphs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bipartite-graphs">Bipartite Graphs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-bipartite-graphs">Complete Bipartite Graphs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connected-graphs">Connected Graphs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unlabeled-graphs">Unlabeled Graphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sotirios Damouras
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

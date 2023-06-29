@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Discrete Multivariate Distributions &#8212; Probability Notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '5.  Discrete Multivariate Distributions';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Two_red_dice_01.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/Two_red_dice_01.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Probability Notebooks
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.%20Probability%20Models.html">Probability Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20Counting.html">Counting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20Conditional%20Probability.html">Conditional Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.%20Discrete%20Random%20Variables.html">Discrete Random Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Solutions.html">Problem Solutions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/damouras/probability_notebooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/damouras/probability_notebooks/issues/new?title=Issue%20on%20page%20%2F5.  Discrete Multivariate Distributions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/5.  Discrete Multivariate Distributions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Discrete Multivariate Distributions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classification">Naive Bayes Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-a-posteriori-classification">Maximum A Posteriori Classification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-assumption">Naive Bayes Assumption</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spam-data">Spam Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-estimation">Probability Estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification">Classification</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="discrete-multivariate-distributions">
+<h1>Discrete Multivariate Distributions<a class="headerlink" href="#discrete-multivariate-distributions" title="Permalink to this headline">#</a></h1>
+<p>Multivariate distributions describe the probabilistic behavior of <em>multiple</em> quantities and their relationships. Every Statistical and Machine Learning method involves multiple random variables (RVs) and their distributions: joint,  conditionals, and margninals. In fact, the foundation of each method lies on how it models the dependence structure of the RVs, which is typically done in way that facilitates analysis and/or computation. In other words, different models make assumptions about how the variables are related to allow for efficient processing. Experienced Data Scientists understand the modelling assumptions and their limitations, allowing them to choose and improve appropriate methods for the problem at hand.</p>
+<p>In this notebook we build a <a class="reference external" href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier">Naive Bayes Classifier (NBC)</a> for spam detection, one of the earliest and most widespread applications of <a class="reference external" href="https://en.wikipedia.org/wiki/Statistical_classification">Statistical classification</a>. Although the probability model for NBC is very simple, the method works extremely well for email filtering and other text classification. We will first look at the model details, and then we will implement the NBC in Python and compare its results with the built-in function in <a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a>, Python’s principal Machine Learning library.</p>
+<section id="naive-bayes-classification">
+<h2>Naive Bayes Classification<a class="headerlink" href="#naive-bayes-classification" title="Permalink to this headline">#</a></h2>
+<p>Classification is the problem of <em>predicting the class</em> of an object based on its other observed characteristics which are  probabilistically related to its class. We denote the class by the <em>categorical</em> (i.e., discrete finite) RV <span class="math notranslate nohighlight">\(Y\)</span>, called the <em>response</em> or <em>label</em>, and we denote the related variables by <span class="math notranslate nohighlight">\(X_1,\ldots,X_p\)</span>, called the <em>predictors</em> of <em>features</em>. For out purposes we will assume the predictors are also discrete finite RVs. So, to summarize, the goal of NBC is to predict the (unknown) value of <span class="math notranslate nohighlight">\(Y\)</span> based on the (observed) values of <span class="math notranslate nohighlight">\(X_1,\ldots, X_p\)</span>.</p>
+<section id="maximum-a-posteriori-classification">
+<h3>Maximum A Posteriori Classification<a class="headerlink" href="#maximum-a-posteriori-classification" title="Permalink to this headline">#</a></h3>
+<p>Assume we know the <em>joint</em> distribution of all #<span class="math notranslate nohighlight">\((p+1)\)</span> RVs <span class="math notranslate nohighlight">\(Y,X_1,\ldots, X_p\)</span> for starters. If we observed the values <span class="math notranslate nohighlight">\(x_1,\ldots, x_p\)</span> for <span class="math notranslate nohighlight">\(X_1,\ldots, X_p\)</span>, our best description of <span class="math notranslate nohighlight">\(Y\)</span> would be the <em>conditional</em> distribution:
+$<span class="math notranslate nohighlight">\( P( Y = y | X_1 =x_1, \ldots, X_p = x_p ),\quad \text{ for }  y \in \text{ range }(Y) \)</span><span class="math notranslate nohighlight">\(
+which gives you the conditional probabilities of the possible values of \)</span>Y<span class="math notranslate nohighlight">\(. If we then had to *guess* which value the RV \)</span>Y<span class="math notranslate nohighlight">\( takes, we would choose the *most likely* one, i.e. that which maximizes the conditional probability:
+\)</span><span class="math notranslate nohighlight">\( \hat{y} =  \arg \max_y P( Y = y | X_1 =x_1, \ldots, X_p = x_p ) \)</span>$
+This approach is called <a class="reference external" href="https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation">Maximum a Posteriori (MAP)</a> prediction, from the name of the conditional distribution, which is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Posterior_probability"><em>posterior</em></a> in this context.</p>
+<p>Furthermore, from Bayes theorem we get:
+$<span class="math notranslate nohighlight">\( P(Y=y|X_1=x_1,\ldots,X_p=x_p) = \frac{  P(Y=y, X_1 = x_1, \ldots, X_p = x_p ) } { P( X_1 = x_1, \ldots, X_p = x_p ) } \\ = \frac{  P( X_1 = x_1, \ldots, X_p = x_p | Y=y ) P(Y=y) } { P( X_1 = x_1, \ldots, X_p = x_p ) } \)</span><span class="math notranslate nohighlight">\(
+Note that \)</span>y$ appears only in the numerator, so maximizing the posterior is equivalent to maximizing the numerator, which is essentially a re-expression of the <em>joint</em> distribution. This is the form of the maximization we will perform, in order to avoid unnecessary calculations.</p>
+<p>Also note that <em>if</em> the predictor RVs <span class="math notranslate nohighlight">\(X_1,\ldots, X_p\)</span> where <em>independent</em> of the response RV <span class="math notranslate nohighlight">\(Y\)</span>, then its conditional/posterior distribution would be the same as its <em>marginal</em> distribution:
+$<span class="math notranslate nohighlight">\(P( Y = y | X_1 =x_1, \ldots, X_p = x_p ) = P( Y = y)\)</span><span class="math notranslate nohighlight">\(
+Intuitively, independence implies that the information obtained from \)</span>X_1, \ldots, X_p<span class="math notranslate nohighlight">\( is irrelevant for predicting \)</span>Y<span class="math notranslate nohighlight">\(. When building a classifier, we would therefore want to use predictors that are as *dependent* as possible to the response. As an extreme example, if you had a predictor \)</span>X<span class="math notranslate nohighlight">\( that was *perfectly* related to \)</span>Y<span class="math notranslate nohighlight">\(, i.e. there is a 1-to-1 relation between the values of \)</span>X<span class="math notranslate nohighlight">\( and \)</span>Y<span class="math notranslate nohighlight">\(, then knowing the value of \)</span>X<span class="math notranslate nohighlight">\( would tell you the value of \)</span>Y$.</p>
+</section>
+<section id="naive-bayes-assumption">
+<h3>Naive Bayes Assumption<a class="headerlink" href="#naive-bayes-assumption" title="Permalink to this headline">#</a></h3>
+<p>We have seen how Bayesian classification works, at least conceptually, but to actually <em>apply</em> it we need a workable form of the <em>joint</em> distribution of <span class="math notranslate nohighlight">\(Y,X_1,\ldots, X_p\)</span>. Since all variables are finite, their joint distribution can be represented as a <span class="math notranslate nohighlight">\((1+p)\)</span>-dimensional array. In Statistical/Machine Learning applications, the probability model is not provided, but has to be <em>estimated/trained</em> based on data. E.g., assuming all variables are <em>binary</em>, there are around <span class="math notranslate nohighlight">\(2^{(p+1)}\)</span> probabilities to estimate in the joint distribution array. Because the number of parameters increases <em>exponentially</em> in the number of dimensions/predictors, good estimation quickly becomes infeasible (requires astronomical amounts of data); what is called the [curse of dimensionality](link here).</p>
+<p>To solve this problem, NBC makes a <em>naive</em> (not reallistic) simplifying assumption: it assumes features are <em>conditionally independent</em> given the class <span class="math notranslate nohighlight">\(Y\)</span>. In practice, this implies that:
+$<span class="math notranslate nohighlight">\( P( X_1 = x_1, \ldots, X_p = x_p | Y=y ) P(Y=y) \\
+= P(X_1 = x_1 | Y = y )  \times \cdots \times P(X_p = x_p | Y = y ) \times P( Y = y )  \\
+= \left( \prod_{i=1}^{p} P(X_i = x_i | Y = y ) \right)  \times P( Y = y ) \)</span><span class="math notranslate nohighlight">\(
+I.e., the joint distribution can be expressed as a product of the \)</span>X<span class="math notranslate nohighlight">\('s 1D conditionals times \)</span>Y<span class="math notranslate nohighlight">\('s 1D marginal. By imposing this special structure we effectively reduce the dimensionality of the problem: instead of one \)</span>(p+1)<span class="math notranslate nohighlight">\(-dimensional distribution, we work with \)</span>(p+1)<span class="math notranslate nohighlight">\( 1-dimensional distributions. E.g., if we assume RVs are binary, there are \)</span>2(p+1)<span class="math notranslate nohighlight">\( probabilities to estimate, rather than \)</span>2^{(p+1)}-1$ for the general model. Now that we have know the main idea behind NBC, we look at a specific application for spam detection.</p>
+</section>
+<section id="spam-data">
+<h3>Spam Data<a class="headerlink" href="#spam-data" title="Permalink to this headline">#</a></h3>
+<p>We will be working with a subset of the <a class="reference external" href="http://nlp.cs.aueb.gr/software_and_datasets/Enron-Spam/index.html">Enron-Spam dataset</a> consisting of 5726 emails, 1368 of which (23.9%) are <em>spam</em> and the remaining 4358 <em>ham</em> (legitimate).
+We use the <a class="reference external" href="https://pandas.pydata.org/">pandas</a> library in Python to work with table/spreadsheet-like data, where each row represents an observation and each column a field/variable. Column <code class="docutils literal notranslate"><span class="pre">text</span></code> contains the email text, and column <code class="docutils literal notranslate"><span class="pre">spam</span></code> indicates if the email is spam (1) or not (0); below is a preview:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">emails</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/emails.csv&quot;</span><span class="p">,</span>  <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">emails</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>text</th>
+      <th>spam</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Subject: naturally irresistible your corporate...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Subject: the stock trading gunslinger  fanny i...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Subject: unbelievable new homes made easy  im ...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Subject: 4 color printing special  request add...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Subject: do not have money , get software cds ...</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span> <span class="o">=</span> <span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">binary</span> <span class="o">=</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="n">min_df</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_df</span> <span class="o">=</span> <span class="mf">.30</span><span class="p">)</span> <span class="c1"># initialize vectorizer</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span> <span class="n">emails</span><span class="o">.</span><span class="n">text</span> <span class="p">)</span>   <span class="c1"># apply vectorizer to emails text column; output is sparse binary matrix </span>
+<span class="n">X_words</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>  <span class="c1"># extract words</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">emails</span><span class="o">.</span><span class="n">spam</span>                               <span class="c1"># extract response</span>
+
+<span class="kn">import</span> <span class="nn">random</span><span class="p">;</span> <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_words</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;capture&#39;,
+ &#39;reaching&#39;,
+ &#39;aiesec&#39;,
+ &#39;enclosed&#39;,
+ &#39;bother&#39;,
+ &#39;ordered&#39;,
+ &#39;measures&#39;,
+ &#39;narrow&#39;,
+ &#39;spark&#39;,
+ &#39;introduced&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="probability-estimation">
+<h3>Probability Estimation<a class="headerlink" href="#probability-estimation" title="Permalink to this headline">#</a></h3>
+<p>We now estimate the joint distribution, which for NBC is given by the conditional probabilities of each word being present in a spam or non-spam email, i.e. <span class="math notranslate nohighlight">\(P( X_i=1 | Y=1 )\)</span> and <span class="math notranslate nohighlight">\(P( X_i = 1 | Y=0)\)</span> respectively. Notice that for any binary feature we have <span class="math notranslate nohighlight">\( P( X_i=0 | Y=y ) = 1 - P( X_i=1 | Y=y)\)</span> for any <span class="math notranslate nohighlight">\(y=0,1\)</span> by the complement rule, i.e. just one probability value determines the conditional distribution.</p>
+<p>Let’s focus on <span class="math notranslate nohighlight">\( P( X_i=1 | Y=1 ) = \frac{P( X_i=0, Y=1 ) }{P( Y=1 )}\)</span>: we could estimate this probability based on data by dividing the number of times word <span class="math notranslate nohighlight">\(i\)</span> appears in spam emails (corresponding to <span class="math notranslate nohighlight">\( \{X_i=0\} \cap \{Y=1\}\)</span>) by the number of spam emails (<span class="math notranslate nohighlight">\(\{Y=1\}\)</span>) in our data. But this approach has a problem: if there are no spam emails with that word in our data, the estimated probability will be 0, which implies it is <em>impossible</em> to ever have a spam email with that word. To avoid such extremes we employ <a class="reference external" href="https://en.wikipedia.org/wiki/Additive_smoothing">Laplace smoothing</a>, adjusting the ratio to allow a small probability of observing a word in every type of email. The estimated conditional probabilities become:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\hat{P}( X_i=1 | Y=1 ) = \frac{ \text{ # spam emails w/ word $i$}+1 }{ \text{# spam emails}+2 } \\
+\hat{P}( X_i=1 | Y=0 ) = \frac{ \text{ # ham emails w/ word $i$}+1 }{ \text{# ham emails}+2 } 
+\end{split}\]</div>
+<p>(the <em>hat</em> notation <span class="math notranslate nohighlight">\(\hat{P}\)</span> indicates this is an estimate). This, combined with the estimated (marginal) probability of spam:
+$<span class="math notranslate nohighlight">\( \hat{P}(Y=1) = \frac{ \text{ # spam emails } } { \text{ # emails } } \)</span>$
+is all we need for NBC.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">P_X_Y1</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">X</span><span class="p">[</span> <span class="n">Y</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">]</span> <span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">Y</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="p">)</span> <span class="c1"># Estimate P( X_i=1 | Y=1 )</span>
+<span class="n">P_X_Y0</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">X</span><span class="p">[</span> <span class="n">Y</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">]</span> <span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">Y</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="p">)</span> <span class="c1"># Estimate P( X_i=1 | Y=0 )</span>
+<span class="n">P_Y1</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">Y</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>  <span class="c1"># Estimate P( Y=1 )</span>
+<span class="n">P_Y0</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">P_Y1</span>
+
+<span class="c1"># np.sum( X[ Y == 1 ] , axis = 0) returns a vector with word counts:</span>
+<span class="c1"># X[ Y==1 ] uses Boolean array indexing to extract spam (Y==1) rows</span>
+<span class="c1"># (https://numpy.org/doc/stable/user/basics.indexing.html)</span>
+<span class="c1"># and np.sum( . , axis = 0 ) sums along word feature columns </span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="classification">
+<h3>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">#</a></h3>
+<p>With probabilities estimated, we now apply our classifier on the same data to evualuate its performance. Using only the word features (<span class="math notranslate nohighlight">\(X\)</span>’s), we compare the two conditional probabilities <span class="math notranslate nohighlight">\(P( Y=1 | X_1=x_1,\ldots,X_p=x_p)\)</span> vs <span class="math notranslate nohighlight">\(P( Y=0 | X_1=x_1,\ldots,X_p=x_p)\)</span> and choose the class (<span class="math notranslate nohighlight">\(Y\)</span>=0/ham or 1/spam) giving the highest one. We saw above that we only need to calculate the numerator (denominator is common), which by the Naive Bayes assumption is factorized as:
+$<span class="math notranslate nohighlight">\( P( X_1 = x_1, \ldots, X_p = x_p | Y=y ) P(Y=y) =  \prod_{i=1}^{p} P(X_i = x_i | Y = y ) \times P( Y = y ) \)</span><span class="math notranslate nohighlight">\(
+If you tried to calculate this product in Python you would get 0 because it multiplies thousands of small probabilities. For numerical stability, we will compare the *logarithms* of the products which are the sums of their logs:
+\)</span><span class="math notranslate nohighlight">\( \log  \left( \prod_{i=1}^{p} P(X_i = x_i | Y = y ) \times P( Y = y ) \right) = \sum_{i=1}^{p} \log ( P(X_i = x_i | Y = y ) ) + \log(  P( Y = y ) ) \)</span><span class="math notranslate nohighlight">\(
+The following code loops over every email, compares the log-probabilities for ham/spam, and selects the class with the highest one. Note the use of the complement rule \)</span>P(X_i=0|Y=y) = 1 - P(X_i=1|Y=y)<span class="math notranslate nohighlight">\( for features with \)</span>X_i = 0$. At the end, it calculates the <em>accuracy</em>, i.e. the proportion of correctly classified emails, which is an impressive 96.75%!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y_my_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span> <span class="p">:</span>
+    <span class="n">lP_Y0X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="n">P_X_Y0</span><span class="p">[</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">P_X_Y0</span><span class="p">[</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="n">P_Y0</span> <span class="p">)</span>
+    <span class="n">lP_Y1X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="n">P_X_Y1</span><span class="p">[</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">P_X_Y1</span><span class="p">[</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="n">P_Y1</span> <span class="p">)</span>
+    <span class="k">if</span> <span class="n">lP_Y1X</span> <span class="o">&gt;</span> <span class="n">lP_Y0X</span><span class="p">:</span>
+        <span class="n">Y_my_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="nb">sum</span><span class="p">(</span> <span class="n">Y_my_pred</span> <span class="o">==</span> <span class="n">Y</span> <span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>   <span class="c1"># caclulate accuracy (% correct classification)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9675165909884736
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have effectively implemented the same procedure used in <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, albeit less efficiently. For comparison, the following code gives</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">BernoulliNB</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">BernoulliNB</span><span class="p">()</span>      <span class="c1"># initiate Bernoulli (= binary feature) NBC </span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>            <span class="c1"># train model </span>
+<span class="n">Y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># extract predictions</span>
+<span class="nb">sum</span><span class="p">(</span> <span class="n">Y_pred</span> <span class="o">==</span> <span class="n">Y</span> <span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> <span class="c1">#</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9675165909884736
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_pred</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [6],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_pred</span><span class="p">)</span> <span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_pred</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;Y_test&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span> <span class="n">y_train</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7629250116441546 0.23707498835584537 1.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="problems">
+<h2>Problems<a class="headerlink" href="#problems" title="Permalink to this headline">#</a></h2>
+<p>Before applying the classifier, we split our data into a <a class="reference external" href="https://en.wikipedia.org/wiki/Training,_validation,_and_test_data_sets">training and test</a> set; the training set is used to estimate the probabilities, and the test is used to evaluate the performance of the procedure. We do this to get an <em>objective</em> measure of performance on data that were not used to set up</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1234</span><span class="p">)</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">BernoulliNB</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
+
+<span class="n">Y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">sum</span><span class="p">(</span> <span class="n">Y_pred</span> <span class="o">==</span> <span class="n">Y_test</span> <span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y_test</span><span class="p">)</span>
+
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_pred</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9629888268156425
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classification">Naive Bayes Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-a-posteriori-classification">Maximum A Posteriori Classification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-assumption">Naive Bayes Assumption</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spam-data">Spam Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-estimation">Probability Estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification">Classification</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sotirios Damouras
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
